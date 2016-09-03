@@ -23,7 +23,7 @@ In this tutorial, you will
  but ever since I chance upon the topic of *Reproducible Research* I do noticed the advanctage of codes block where 
  I can re-execute the codes again in a reproducible way.
 
- I balso like the idea of a text format which is portable across multi platform and I sharing it in GitHub. ;-)
+ I also like the idea of a text format which is portable across multi platform and I sharing it in GitHub. ;-)
 
  Feel free to provide feedback and expand it for your own use.
 
