@@ -1,0 +1,15 @@
+bash-3.2$ apic create --type model
+Warning: Found no data sources to attach model. There will be no data-access methods available until datasources are attached.
+? Enter the model name: profile
+? Select model's base class PersistedModel
+? Expose profile via the REST API? Yes
+? Custom plural form (used to build REST URL): 
+? Common model or server only? common
+Let's add some profile properties now.
+
+Enter an empty property name when done.
+? Property name: 
+Done running loopback generator
+
+Updating swagger and product definitions
+Created /Users/jaricsng/proj-dev/container/demo-docker/app/bankapp/definitions/bankapp.yaml swagger description

@@ -1,0 +1,397 @@
+paths:
+  /Messages/greet:
+    get:
+      tags:
+        - Message
+      operationId: Message.greet
+      parameters:
+        - name: msg
+          in: query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              greeting:
+                type: string
+      deprecated: false
+  /profiles:
+    post:
+      tags:
+        - profile
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: profile.create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/profile'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/profile'
+      deprecated: false
+    patch:
+      tags:
+        - profile
+      summary: Patch an existing model instance or insert a new one into the data source.
+      operationId: profile.upsert__patch_profiles
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/profile'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/profile'
+      deprecated: false
+    put:
+      tags:
+        - profile
+      summary: Patch an existing model instance or insert a new one into the data source.
+      operationId: profile.upsert__put_profiles
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/profile'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/profile'
+      deprecated: false
+    get:
+      tags:
+        - profile
+      summary: Find all instances of the model matched by filter from the data source.
+      operationId: profile.find
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/profile'
+      deprecated: false
+  /profiles/replaceOrCreate:
+    post:
+      tags:
+        - profile
+      summary: Replace an existing model instance or insert a new one into the data source.
+      operationId: profile.replaceOrCreate
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/profile'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/profile'
+      deprecated: false
+  '/profiles/{id}/exists':
+    get:
+      tags:
+        - profile
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'profile.exists__get_profiles_{id}_exists'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+  '/profiles/{id}':
+    head:
+      tags:
+        - profile
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'profile.exists__head_profiles_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+    get:
+      tags:
+        - profile
+      summary: 'Find a model instance by {{id}} from the data source.'
+      operationId: profile.findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: filter
+          in: query
+          description: Filter defining fields and include
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/profile'
+      deprecated: false
+    delete:
+      tags:
+        - profile
+      summary: 'Delete a model instance by {{id}} from the data source.'
+      operationId: profile.deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+    patch:
+      tags:
+        - profile
+      summary: Patch attributes for a model instance and persist it into the data source.
+      operationId: 'profile.prototype.updateAttributes__patch_profiles_{id}'
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/profile'
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/profile'
+      deprecated: false
+    put:
+      tags:
+        - profile
+      summary: Patch attributes for a model instance and persist it into the data source.
+      operationId: 'profile.prototype.updateAttributes__put_profiles_{id}'
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/profile'
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/profile'
+      deprecated: false
+  '/profiles/{id}/replace':
+    post:
+      tags:
+        - profile
+      summary: Replace attributes for a model instance and persist it into the data source.
+      operationId: profile.replaceById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/profile'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/profile'
+      deprecated: false
+  /profiles/findOne:
+    get:
+      tags:
+        - profile
+      summary: Find first instance of the model matched by filter from the data source.
+      operationId: profile.findOne
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/profile'
+      deprecated: false
+  /profiles/update:
+    post:
+      tags:
+        - profile
+      summary: 'Update instances of the model matched by {{where}} from the data source.'
+      operationId: profile.updateAll
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/profile'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: The number of instances updated
+            type: object
+      deprecated: false
+  /profiles/count:
+    get:
+      tags:
+        - profile
+      summary: Count instances of the model matched by where from the data source.
+      operationId: profile.count
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
+      deprecated: false
+definitions:
+  profile:
+    properties:
+      name:
+        type: string
+      id:
+        $ref: '#/definitions/ObjectID'
+    required:
+      - name
+    additionalProperties: false
+  x-any:
+    properties: {}
+  ObjectID:
+    type: string
+    pattern: "^[a-fA-F\\d]{24}$"
+swagger: '2.0'
+info:
+  x-ibm-name: bankapp
+  version: 1.0.0
+  title: bankapp
+schemes:
+  - https
+host: $(catalog.host)
+basePath: /api
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+  clientSecretHeader:
+    in: header
+    name: X-IBM-Client-Secret
+    type: apiKey
+security:
+  - clientIdHeader: []
+    clientSecretHeader: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  catalogs:
+    apic-dev:
+      properties:
+        runtime-url: $(TARGET_URL)
+    sb:
+      properties:
+        runtime-url: 'http://localhost:4001'
+  assembly:
+    execute:
+      - invoke:
+          target-url: $(runtime-url)$(request.path)$(request.search)

@@ -1,0 +1,15 @@
+Jarics-MacBook-Pro:bankapp jaricsng$ apic create --type datasource
+? Enter the data-source name: testdb
+? Select the connector for testdb: MongoDB (supported by StrongLoop)
+Connector-specific configuration:
+? Connection String url to override other settings (eg: mongodb://username:password@hostname:port/database):
+? host: localhost
+? port: 28001
+? user: 
+? password: 
+? database: test
+Done running loopback generator
+
+Updating swagger and product definitions
+Created /Users/jaricsng/proj-dev/container/demo-docker/app/bankapp/definitions/bankapp.yaml swagger description
+Jarics-MacBook-Pro:bankapp jaricsng$ 

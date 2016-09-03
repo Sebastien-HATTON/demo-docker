@@ -1,0 +1,465 @@
+* Docker Tutorial
+
+** Summary
+ This tutorial is created using Emacs 24 with Org-Mode using features
+ - code block for 
+   + mongodb
+   + shell
+
+My environment
+- Mac
+- Git
+- Emacs
+- npm
+- nodeJS
+- brew
+
+In this tutorial, you will 
+- learn how to pull image, build image, run it and manage it
+- learn how to use IBM API Connect to rapidly create API that connect to a running instance of Docker mongodb instance
+- learn how to run a IBM WebSphere Liberty Docker image from IBM where you can quickly build app quickly that can run anywhere on premise or on the cloud.
+
+ Using this as an opportunity to explore Emacs Org Mode on *Reproducible Research*, usually I wrote such tutorial using MS Word 
+ but ever since I chance upon the topic of *Reproducible Research* I do noticed the advanctage of codes block where 
+ I can re-execute the codes again in a reproducible way.
+
+ I balso like the idea of a text format which is portable across multi platform and I sharing it in GitHub. ;-)
+
+ Feel free to provide feedback and expand it for your own use.
+
+ Would love to hear, what you have done with it too.
+
+** Notes
+- to execute the code with the code block, place cursor with block and place C-c C-c
+- command with are iteractive will not work e.g. /apic loopback/
+
+** What is Docker?
+It allows you to *Build, Ship and Run* a server everywhere.
+more details: [[https://www.docker.com/what-docker][What is Docker?]]
+** Install
+more details: [[https://www.docker.com/products/overview][Get Docker]] 
+*** Check version
+**** Docker version
+#+BEGIN_SRC sh
+docker --version
+#+END_SRC
+
+#+RESULTS:
+| Docker version 1.12.0 | build 8eab29e |
+**** docker-compose version
+#+BEGIN_SRC sh
+docker-compose --version
+#+END_SRC
+
+#+RESULTS:
+| docker-compose version 1.8.0 | build f3628c7 |
+
+**** docker-machine version
+#+BEGIN_SRC sh
+docker-machine --version
+#+END_SRC
+
+#+RESULTS:
+| docker-machine version 0.8.0 | build b85aac1 |
+
+**** Docker check
+#+BEGIN_SRC sh
+docker info
+#+END_SRC
+
+#+RESULTS:
+| Containers:      | 9                                                           |                                |                 |      |
+| Running:         | 0                                                           |                                |                 |      |
+| Paused:          | 0                                                           |                                |                 |      |
+| Stopped:         | 9                                                           |                                |                 |      |
+| Images:          | 40                                                          |                                |                 |      |
+| Server           | Version:                                                    | 1.12.0                         |                 |      |
+| Storage          | Driver:                                                     | aufs                           |                 |      |
+| Root             | Dir:                                                        | /var/lib/docker/aufs           |                 |      |
+| Backing          | Filesystem:                                                 | extfs                          |                 |      |
+| Dirs:            | 66                                                          |                                |                 |      |
+| Dirperm1         | Supported:                                                  | true                           |                 |      |
+| Logging          | Driver:                                                     | json-file                      |                 |      |
+| Cgroup           | Driver:                                                     | cgroupfs                       |                 |      |
+| Plugins:         |                                                             |                                |                 |      |
+| Volume:          | local                                                       |                                |                 |      |
+| Network:         | host                                                        | overlay                        | bridge          | null |
+| Swarm:           | inactive                                                    |                                |                 |      |
+| Runtimes:        | runc                                                        |                                |                 |      |
+| Default          | Runtime:                                                    | runc                           |                 |      |
+| Security         | Options:                                                    | seccomp                        |                 |      |
+| Kernel           | Version:                                                    | 4.4.15-moby                    |                 |      |
+| Operating        | System:                                                     | Alpine                         | Linux           | v3.4 |
+| OSType:          | linux                                                       |                                |                 |      |
+| Architecture:    | x86_64                                                      |                                |                 |      |
+| CPUs:            | 2                                                           |                                |                 |      |
+| Total            | Memory:                                                     | 1.954                          | GiB             |      |
+| Name:            | moby                                                        |                                |                 |      |
+| ID:              | 2YD5:4OVO:RXK6:V5M3:47ZZ:TSDL:LRTQ:UOL4:EUL3:3HG4:TY3Z:XE6A |                                |                 |      |
+| Docker           | Root                                                        | Dir:                           | /var/lib/docker |      |
+| Debug            | Mode                                                        | (client):                      | false           |      |
+| Debug            | Mode                                                        | (server):                      | true            |      |
+| File             | Descriptors:                                                | 17                             |                 |      |
+| Goroutines:      | 27                                                          |                                |                 |      |
+| System           | Time:                                                       | 2016-08-29T16:03:45.622216475Z |                 |      |
+| EventsListeners: | 1                                                           |                                |                 |      |
+| Registry:        | [[https://index.docker.io/v1/]]                                 |                                |                 |      |
+| Insecure         | Registries:                                                 |                                |                 |      |
+| 127.0.0.0/8      |                                                             |                                |                 |      |
+
+** Demo 1 - Run a Ubuntu
+1. Pull an image Ubuntu
+2. Run Ubuntu image (running image is known as container) and login bash command
+
+*** Pull an image from docker hub
+#+BEGIN_SRC sh
+docker pull ubuntu
+#+END_SRC
+
+#+RESULTS:
+| Using         | default                                                                 | tag:     | latest         |     |               |
+| latest:       | Pulling                                                                 | from     | library/ubuntu |     |               |
+| 952132ac251a: | Pulling                                                                 | fs       | layer          |     |               |
+| 82659f8f1b76: | Pulling                                                                 | fs       | layer          |     |               |
+| c19118ca682d: | Pulling                                                                 | fs       | layer          |     |               |
+| 8296858250fe: | Pulling                                                                 | fs       | layer          |     |               |
+| 24e0251a0e2c: | Pulling                                                                 | fs       | layer          |     |               |
+| 8296858250fe: | Waiting                                                                 |          |                |     |               |
+| 24e0251a0e2c: | Waiting                                                                 |          |                |     |               |
+| c19118ca682d: | Download                                                                | complete |                |     |               |
+| 82659f8f1b76: | Download                                                                | complete |                |     |               |
+| 24e0251a0e2c: | Verifying                                                               | Checksum |                |     |               |
+| 24e0251a0e2c: | Download                                                                | complete |                |     |               |
+| 8296858250fe: | Verifying                                                               | Checksum |                |     |               |
+| 8296858250fe: | Download                                                                | complete |                |     |               |
+| 952132ac251a: | Verifying                                                               | Checksum |                |     |               |
+| 952132ac251a: | Download                                                                | complete |                |     |               |
+| 952132ac251a: | Pull                                                                    | complete |                |     |               |
+| 82659f8f1b76: | Pull                                                                    | complete |                |     |               |
+| c19118ca682d: | Pull                                                                    | complete |                |     |               |
+| 8296858250fe: | Pull                                                                    | complete |                |     |               |
+| 24e0251a0e2c: | Pull                                                                    | complete |                |     |               |
+| Digest:       | sha256:f4691c96e6bbaa99d99ebafd9af1b68ace2aa2128ae95a60369c506dd6e6f6ab |          |                |     |               |
+| Status:       | Downloaded                                                              | newer    | image          | for | ubuntu:latest |
+
+*** Run Ubuntu in /bin/bash
+#+BEGIN_SRC sh
+docker run -i -t ubuntu /bin/bash
+#+END_SRC
+
+*** List all running instances aka containers
+#+BEGIN_SRC sh
+docker ps
+#+END_SRC
+
+#+RESULTS:
+| CONTAINER    | ID     | IMAGE     | COMMAND | CREATED | STATUS | PORTS | NAMES |         |          |
+| fbfc2fac102b | ubuntu | /bin/bash |       8 | minutes | ago    | Up    |     8 | minutes | zen_jang |
+
+*** List Images
+#+BEGIN_SRC sh
+docker images
+#+END_SRC
+
+#+RESULTS:
+| REPOSITORY        | TAG         | IMAGE        |    ID | CREATED | SIZE   |       |       |    |
+| mongodb           | latest      | 9e95a5c46283 | About | a       | minute |   ago | 405.7 | MB |
+| ubuntu            | latest      | bd3d4369aebc |     2 | days    | ago    | 126.6 | MB    |    |
+| apicdemo          | latest      | 4943f5b2f142 |     2 | weeks   | ago    | 649.9 | MB    |    |
+| <none>            | <none>      | 9f0a904f5a6a |     3 | weeks   | ago    | 403.2 | MB    |    |
+| botapp            | latest      | c6285c13cc0a |     3 | weeks   | ago    | 461.8 | MB    |    |
+| helloworld        | latest      | cb1f7dc93625 |     3 | weeks   | ago    | 649.9 | MB    |    |
+| node              | 4-onbuild   | e236c02ee235 |     4 | weeks   | ago    | 647.5 | MB    |    |
+| websphere-liberty | webProfile7 | a5bd5177b650 |     5 | weeks   | ago    | 404.7 | MB    |    |
+| ubuntu            | <none>      | 42118e3df429 |     5 | weeks   | ago    | 124.8 | MB    |    |
+| nginx             | latest      | 0d409d33b27e |    12 | weeks   | ago    | 182.8 | MB    |    |
+
+*** List all instances aka containers
+#+BEGIN_SRC sh
+docker ps -a
+#+END_SRC
+
+** Demo 2 - Run a Mongodb
+
+*** Build Mongodb image
+ 1. Create a folder of your choice: /mongodb/
+ 2. Change to folder /mongo/ and create a file: [[file:mongodb/Dockerfile][Dockerfile]]
+ 3. Execute the command below
+
+Run the following from the folder where the Dockerfile is located
+#+BEGIN_SRC sh
+cd /Users/jaricsng/proj-dev/container/mongodb/
+docker build -t mongodb .
+#+END_SRC
+
+*** Run the image
+#+BEGIN_SRC sh
+docker run -p 28001:27017 --name mongo_instance_001 -d mongodb
+#+END_SRC
+
+When the image is started successfully you will see the instance ID similar to the one shown below.
+#+RESULTS:
+: d3e36757a7de5c201e447f0f0ad0963dbea1939b7c4c0243f4a74c0169ad9f28
+
+*NOTE*
+If encountered the error message below, use the following command to check instance already exist but stopped.
+
+#+BEGIN_SRC sh
+docker ps -a
+#+END_SRC
+
+#+RESULTS:
+| CONTAINER    | ID      | IMAGE           | COMMAND | CREATED | STATUS | PORTS | NAMES |         |                          |                    |
+| d3e36757a7de | mongodb | /usr/bin/mongod |      22 | minutes | ago    | Up    |    22 | minutes | 0.0.0.0:28001->27017/tcp | mongo_instance_001 |
+
+docker: Error response from daemon: Conflict. The name "/mongo_instance_001" is already in use by container 07afa4ca0096a5594bd0cec5d7b9ed67eb8c05252a8abe4c3b09be3edb71c058. You have to remove (or rename) that container to be able to reuse that name..
+See 'docker run --help'.
+
+**** Solution:
+You can either start the instance or you can choose to remove the instance and then run the image again
+
+1. Start the instance, run the following command
+#+BEGIN_SRC sh
+docker start mongo_instance_001
+#+END_SRC
+2a) Delete existing instance using the container <id> : d3e36757a7de shown above
+#+BEGIN_SRC sh
+docker rm d3e36757a7de
+#+END_SRC 
+2b) With the instance removed you can re- [[Run the image]] again.
+
+*** Test MongoDB command
+To connect to mongodb instance in terminal you can run the following command
+
+=mongo localhost:28001=
+You can then work with mongodb with [[https://docs.mongodb.com/manual/reference/mongo-shell/][command lines (CLI).]]
+
+#+BEGIN_SRC mongo :db localhost:28001/test
+show dbs
+#+END_SRC
+
+#+RESULTS:
+: local  0.000GB
+: test   0.000GB
+
+
+#+BEGIN_SRC  mongo :db localhost:28001/test
+show databases
+#+END_SRC
+
+#+RESULTS:
+: local  0.000GB
+: test   0.000GB
+
+#+BEGIN_SRC  mongo :db localhost:28001/test
+show users
+#+END_SRC
+#+RESULTS:
+
+#+BEGIN_SRC mongo :db localhost:28001/test
+show collections
+#+END_SRC
+
+#+RESULTS:
+: profile
+
+#+BEGIN_SRC mongo :db localhost:28001/test
+db.profile.find()
+#+END_SRC
+
+#+RESULTS:
+: { "_id" : ObjectId("57c535a40613166afae36f83"), "name" : "John Doe" }
+
+#+BEGIN_SRC mongo :db localhost:28001/test
+db.profile.drop()
+#+END_SRC
+
+#+RESULTS:
+: true
+
+** Demo 3 - create an APIConnect app that connect to the mongodb instance
+In this demo, we will create a demo with IBM API Connect, an app that we can quickly create an API and connect to mongodb.
+
+*** Pre requisite
+1. Download and install [[https://www.ibm.com/support/knowledgecenter/SSMNED_5.0.0/mapfiles/getting_started.html][IBM API Connect]]
+*** Create API app with IBM API Connect
+**** Create a bankapp
+ In this step, we will create a loopback project
+ more details: [[https://www.ibm.com/support/knowledgecenter/SSMNED_5.0.0/com.ibm.apic.toolkit.doc/tutorial_cli_project_create.html][Creating a LoopBack project]]
+ 1. create a new folder /./app/
+ 2. change folder to /./app/
+ 3. type the command below
+ #+BEGIN_SRC sh
+ cd ./app
+ apic loopback
+ #+END_SRC
+
+ #+RESULTS:
+ [[file:app/create-bankapp-trace.txt][trace for /apic loopback/ command]]
+**** Install mongodb connector
+ In this step, we will need to install the mongodb connector since we are connecting to docker mongodb instance
+ more details: [[https://www.ibm.com/support/knowledgecenter/SSMNED_5.0.0/com.ibm.apic.toolkit.doc/tapim-connector-install.html][Installing LoopBack connectors]]
+ #+BEGIN_SRC sh
+ cd ./app/bankapp
+ npm install --save loopback-connector-mongodb
+ #+END_SRC
+
+ the /--save/ option will create a entry in the *package.json* file
+
+ #+RESULTS:
+ [[file:app/install-connector-trace.txt][trace for /npm install --save loopback-connector-mongodb/ command]]
+**** Start mongodb instance
+ see [[Run the image]]
+**** Create a datasource
+ In this step, we will create the data source to mongodb
+ More details: [[https://www.ibm.com/support/knowledgecenter/en/SSMNED_5.0.0/com.ibm.apic.toolkit.doc/tutorial_cli_model_create_command.html][Creating a model and a data source from the command line]]
+ #+BEGIN_SRC sh
+ apic create --type datasource
+ #+END_SRC
+**** Create Model 
+ In this step, we will create a model /profile/ having one property /name:string/
+ #+BEGIN_SRC sh
+ cd ./app/bankapp
+ apic create --type model
+ #+END_SRC 
+
+ #+RESULTS:
+ [[file:app/create-model-trace.txt][trace for /apic create --type model/ command]]
+**** Test the loopback project
+In this step, you will test the loopback project, you can do this via command line or API designer
+more details: [[https://www.ibm.com/support/knowledgecenter/SSMNED_5.0.0/com.ibm.apic.toolkit.doc/tutorial_cli_project_test.html][Testing a LoopBack project]]
+sign up for a Bluemix account, where you can deploy your API on the cloud.
+
+*Note:* Ensure the docker mongodb is running
+
+You will use edit API with the UI designer where you
+- Start the designer
+- Edit property in model, map the model to the datasource
+- Test the datasource connection
+- Run the project
+- Test Post (insert profile record)
+- Test Get (find all profile record)
+
+
+***** Start with the following command for UI designer
+
+ #+BEGIN_SRC sh
+ apic edit
+ #+END_SRC
+
+#+CAPTION: Overview of APIC designer
+[[./img/apic-edit-overview.png]]
+
+***** Edit property in model
+#+CAPTION: Access the model
+[[file:img/apic-edit-model.png]]
+
+#+CAPTION: Edit model view
+[[file:img/apic-edit-model-detail.png]]
+***** Test the datasource connection
+#+CAPTION: Access datasource view
+[[file:img/apic-edit-ds.png]]
+
+#+CAPTION: Configure and test datasource
+[[file:img/apic-edit-ds-detail.png]]
+
+#+CAPTION: Datasource test result
+[[file:img/apic-edit-ds-detail-test.png]]
+***** Run the project
+#+CAPTION: Start app
+[[file:img/apic-edit-app-started.png]]
+***** Test Post (insert profile record)
+#+CAPTION: Access POST API
+[[file:img/apic-edit-api-post.png]]
+
+#+CAPTION: Call POST API
+[[file:img/apic-edit-api-post-call.png]]
+#+CAPTION: Status of POST API
+[[file:img/apic-edit-api-post-call-status.png]]
+
+***** Test Get (find all profile record)
+#+CAPTION: Access GET API
+[[file:img/apic-edit-api-get.png]]
+
+#+CAPTION: Status of GET API call operation
+[[file:img/apic-edit-api-get-status.png]]
+
+***** A sample NodeJS app that test the bankapp above
+
+A simple clientapp to test call the newly created API profile
+#+BEGIN_SRC sh
+cd ./app/clientapp
+node .
+#+END_SRC
+
+(browse-url "http://localhost:3000/api/profiles")
+
+Alternatively, you can test the project via command line, see link above.
+
+** Demo 4 - Run a IBM WebSphere Liberty Server
+In this demo you will pull a WebSphere Liberty image with sample app from Docker Hub and run it
+
+*** Pull WebSphere Liberty profile
+In a terminal, run the following command, it will pull a new Liberty image with webProfile7
+
+#+BEGIN_SRC sh
+docker pull websphere-liberty:webProfile7
+#+END_SRC
+
+*** Run the image
+change the path in the command below accordingly to where the /libertyapp/ folder is located on your machine.
+
+The command basically runs a docker image with options
+- d :: daemon
+- p :: define a host port 80 map to docker container port 9080
+- v :: mount a host folder /../libertyapp/DefaultServletEngine/where an application is located to the container /config/ folder
+- websphere-liberty:webProfile7 :: the name of the image to run
+
+#+BEGIN_SRC sh 
+docker run -d -p 80:9080 -v /Users/jaricsng/proj-dev/container/demo-docker/app/libertyapp/DefaultServletEngine:/config websphere-liberty:webProfile7
+#+END_SRC
+
+*** Test the app
+
+(browse-url "http://localhost/Sample1/SimpleServlet")
+
+** Resources
++ [[https://docs.docker.com/engine/installation/mac/][Docker installation on Mac]]
++ [[http://lzone.de/cheat-sheet/Docker][docker cheat sheet]]
++ [[https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/][Docker best practice]]
+
+*** Docker Commands
+ |------------------------------------+------------------------------------------------------------------------|
+ | command                            | Description                                                            |
+ |------------------------------------+------------------------------------------------------------------------|
+ | docker ps                          | # List running instances                                               |
+ | docker ps -a                       | # List all instances                                                   |
+ | docker inspect <id>                | # Instance details                                                     |
+ | docker top     <id>                | # Instance processes                                                   |
+ | docker logs    <id>                | # Instance console log                                                 |
+ | docker run -i -t ubuntu /bin/bash  | # New instance from image                                              |
+ | docker start   <id>                |                                                                        |
+ | docker restart <id>                |                                                                        |
+ | docker stop    <id>                |                                                                        |
+ | docker attach  <id>                |                                                                        |
+ | docker rm      <id>                |                                                                        |
+ | docker cp '<id>':/data/file .      | # Copy file out of container                                           |
+ | docker images                      | # List locally stored images                                           |
+ | docker logs <id>                   | # view the logs                                                        |
+ | docker kill <id>                   | # kill the instance                                                    |
+ | docker build -t <name> .           | # build using the Dockerfile                                           |
+ | docker run -p 5000:3000 -d -t <id> | # run in /daemon/ with /host port/ *5000* map to container port *3000* |
+ | docker stop $(docker ps -a -q)     | # stop all instances                                                   |
+ | docker rm $(docker ps -a -q)       | # remove all instances (*caution!*)                                    |
+ | docker rmi $(docker images -q)     | # remover all images (*caution!*)                                      |
+ |                                    |                                                                        |
+ |------------------------------------+------------------------------------------------------------------------|
+
+1. [[http://batsov.com/prelude/][Prelude prepackage by Bozhidar to make Emacs pleasant and powerful to use, would recommend starting with it]]
+2. [[http://orgmode.org/guide/index.html#Top][The Emacs compact Org-mode Guide]]
+3. [[http://emacsrocks.com/][Short video of why Emacs rocks!]]
+4. [[https://www.youtube.com/watch?v=1-dUkyn_fZA][Emacs + org-mode + python in reproducible research; SciPy 2013 Presentation]]
+5. [[https://www.youtube.com/watch?v=bzZ09dAbLEE][Taking Notes In Emacs Org-Mode]]
+6. [[https://github.com/magnars/.emacs.d][Emacs configuration of Magnars who produces the Emacs Rocks! videos.]]
+
+
