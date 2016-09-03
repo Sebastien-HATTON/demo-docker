@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-09-03 Sat 13:04 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Jaric Sng" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline43">1. Docker Tutorial</a>
+<ul>
+<li><a href="#orgheadline1">1.1. Summary</a></li>
+<li><a href="#orgheadline2">1.2. Notes</a></li>
+<li><a href="#orgheadline3">1.3. What is Docker?</a></li>
+<li><a href="#orgheadline9">1.4. Install</a>
+<ul>
+<li><a href="#orgheadline8">1.4.1. Check version</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline15">1.5. Demo 1 - Run a Ubuntu</a>
+<ul>
+<li><a href="#orgheadline10">1.5.1. Pull an image from docker hub</a></li>
+<li><a href="#orgheadline11">1.5.2. Run Ubuntu in /bin/bash</a></li>
+<li><a href="#orgheadline12">1.5.3. List all running instances aka containers</a></li>
+<li><a href="#orgheadline13">1.5.4. List Images</a></li>
+<li><a href="#orgheadline14">1.5.5. List all instances aka containers</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline20">1.6. Demo 2 - Run a Mongodb</a>
+<ul>
+<li><a href="#orgheadline16">1.6.1. Build Mongodb image</a></li>
+<li><a href="#orgheadline17">1.6.2. Run the image</a></li>
+<li><a href="#orgheadline19">1.6.3. Test MongoDB command</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline36">1.7. Demo 3 - create an APIConnect app that connect to the mongodb instance</a>
+<ul>
+<li><a href="#orgheadline21">1.7.1. Pre requisite</a></li>
+<li><a href="#orgheadline35">1.7.2. Create API app with IBM API Connect</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline40">1.8. Demo 4 - Run a IBM WebSphere Liberty Server</a>
+<ul>
+<li><a href="#orgheadline37">1.8.1. Pull WebSphere Liberty profile</a></li>
+<li><a href="#orgheadline38">1.8.2. Run the image</a></li>
+<li><a href="#orgheadline39">1.8.3. Test the app</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline42">1.9. Resources</a>
+<ul>
+<li><a href="#orgheadline41">1.9.1. Docker Commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline43" class="outline-2">
+<h2 id="orgheadline43"><span class="section-number-2">1</span> Docker Tutorial</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> Summary</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+This tutorial is created using Emacs 24 with Org-Mode using features
+</p>
+<ul class="org-ul">
+<li>code block for 
+<ul class="org-ul">
+<li>mongodb</li>
+<li>shell</li>
+</ul></li>
+</ul>
+
+<p>
+My environment
+</p>
+<ul class="org-ul">
+<li>Mac</li>
+<li>Git</li>
+<li>Emacs</li>
+<li>npm</li>
+<li>nodeJS</li>
+<li>brew</li>
+</ul>
+
+<p>
+In this tutorial, you will 
+</p>
+<ul class="org-ul">
+<li>learn how to pull image, build image, run it and manage it</li>
+<li>learn how to use IBM API Connect to rapidly create API that connect to a running instance of Docker mongodb instance</li>
+<li><p>
+learn how to run a IBM WebSphere Liberty Docker image from IBM where you can quickly build app quickly that can run anywhere on premise or on the cloud.
+</p>
+
+<p>
+Using this as an opportunity to explore Emacs Org Mode on <b>Reproducible Research</b>, usually I wrote such tutorial using MS Word 
+but ever since I chance upon the topic of <b>Reproducible Research</b> I do noticed the advanctage of codes block where 
+I can re-execute the codes again in a reproducible way.
+</p>
+
+<p>
+I also like the idea of a text format which is portable across multi platform and I sharing it in GitHub. ;-)
+</p>
+
+<p>
+Feel free to provide feedback and expand it for your own use.
+</p>
+
+<p>
+Would love to hear, what you have done with it too.
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> Notes</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>to execute the code with the code block, place cursor with block and place C-c C-c</li>
+<li>command with are iteractive will not work e.g. <i>apic loopback</i></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3"><span class="section-number-3">1.3</span> What is Docker?</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+It allows you to <b>Build, Ship and Run</b> a server everywhere.
+more details: <a href="https://www.docker.com/what-docker">What is Docker?</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">1.4</span> Install</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+more details: <a href="https://www.docker.com/products/overview">Get Docker</a> 
+</p>
+</div>
+<div id="outline-container-orgheadline8" class="outline-4">
+<h4 id="orgheadline8"><span class="section-number-4">1.4.1</span> Check version</h4>
+<div class="outline-text-4" id="text-1-4-1">
+</div><ol class="org-ol"><li><a id="orgheadline4"></a>Docker version<br  /><div class="outline-text-5" id="text-1-4-1-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker --version
+</pre>
+</div>
+</div></li>
+<li><a id="orgheadline5"></a>docker-compose version<br  /><div class="outline-text-5" id="text-1-4-1-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker-compose --version
+</pre>
+</div>
+</div></li>
+
+<li><a id="orgheadline6"></a>docker-machine version<br  /><div class="outline-text-5" id="text-1-4-1-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker-machine --version
+</pre>
+</div>
+</div></li>
+
+<li><a id="orgheadline7"></a>Docker check<br  /><div class="outline-text-5" id="text-1-4-1-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker info
+</pre>
+</div>
+</div></li></ol>
+</div>
+</div>
+
+<div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">1.5</span> Demo 1 - Run a Ubuntu</h3>
+<div class="outline-text-3" id="text-1-5">
+<ol class="org-ol">
+<li>Pull an image Ubuntu</li>
+<li>Run Ubuntu image (running image is known as container) and login bash command</li>
+</ol>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-4">
+<h4 id="orgheadline10"><span class="section-number-4">1.5.1</span> Pull an image from docker hub</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker pull ubuntu
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11"><span class="section-number-4">1.5.2</span> Run Ubuntu in /bin/bash</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run -i -t ubuntu /bin/bash
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-4">
+<h4 id="orgheadline12"><span class="section-number-4">1.5.3</span> List all running instances aka containers</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker ps
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13"><span class="section-number-4">1.5.4</span> List Images</h4>
+<div class="outline-text-4" id="text-1-5-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker images
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14"><span class="section-number-4">1.5.5</span> List all instances aka containers</h4>
+<div class="outline-text-4" id="text-1-5-5">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker ps -a
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">1.6</span> Demo 2 - Run a Mongodb</h3>
+<div class="outline-text-3" id="text-1-6">
+</div><div id="outline-container-orgheadline16" class="outline-4">
+<h4 id="orgheadline16"><span class="section-number-4">1.6.1</span> Build Mongodb image</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<ol class="org-ol">
+<li>Create a folder of your choice: <i>mongodb</i></li>
+<li>Change to folder <i>mongo</i> and create a file: <a href="mongodb/Dockerfile">Dockerfile</a></li>
+<li>Execute the command below</li>
+</ol>
+
+<p>
+Run the following from the folder where the Dockerfile is located
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #ff8A65;">cd</span> /Users/jaricsng/proj-dev/container/mongodb/
+docker build -t mongodb .
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-4">
+<h4 id="orgheadline17"><span class="section-number-4">1.6.2</span> Run the image</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run -p 28001:27017 --name mongo_instance_001 -d mongodb
+</pre>
+</div>
+
+<p>
+When the image is started successfully you will see the instance ID similar to the one shown below.
+</p>
+<pre class="example">
+d3e36757a7de5c201e447f0f0ad0963dbea1939b7c4c0243f4a74c0169ad9f28
+</pre>
+
+<p>
+<b>NOTE</b>
+If encountered the error message below, use the following command to check instance already exist but stopped.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">docker ps -a
+</pre>
+</div>
+
+<p>
+docker: Error response from daemon: Conflict. The name "/mongo<sub>instance</sub><sub>001</sub>" is already in use by container 07afa4ca0096a5594bd0cec5d7b9ed67eb8c05252a8abe4c3b09be3edb71c058. You have to remove (or rename) that container to be able to reuse that name..
+See 'docker run &#x2013;help'.
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="orgheadline18"></a>Solution:<br  /><div class="outline-text-5" id="text-1-6-2-1">
+<p>
+You can either start the instance or you can choose to remove the instance and then run the image again
+</p>
+
+<ol class="org-ol">
+<li>Start the instance, run the following command</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker start mongo_instance_001
+</pre>
+</div>
+<p>
+2a) Delete existing instance using the container &lt;id&gt; : d3e36757a7de shown above
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker rm d3e36757a7de
+</pre>
+</div>
+<p>
+2b) With the instance removed you can re- <a href="#orgheadline17">1.6.2</a> again.
+</p>
+</div></li></ol>
+</div>
+
+<div id="outline-container-orgheadline19" class="outline-4">
+<h4 id="orgheadline19"><span class="section-number-4">1.6.3</span> Test MongoDB command</h4>
+<div class="outline-text-4" id="text-1-6-3">
+<p>
+To connect to mongodb instance in terminal you can run the following command
+</p>
+
+<p>
+<code>mongo localhost:28001</code>
+You can then work with mongodb with <a href="https://docs.mongodb.com/manual/reference/mongo-shell/">command lines (CLI).</a>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-mongo">show dbs
+</pre>
+</div>
+
+
+<div class="org-src-container">
+
+<pre class="src src-mongo">show databases
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-mongo">show users
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-mongo">show collections
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-mongo">db.profile.find()
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-mongo">db.profile.drop()
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline36" class="outline-3">
+<h3 id="orgheadline36"><span class="section-number-3">1.7</span> Demo 3 - create an APIConnect app that connect to the mongodb instance</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+In this demo, we will create a demo with IBM API Connect, an app that we can quickly create an API and connect to mongodb.
+</p>
+</div>
+
+<div id="outline-container-orgheadline21" class="outline-4">
+<h4 id="orgheadline21"><span class="section-number-4">1.7.1</span> Pre requisite</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<ol class="org-ol">
+<li>Download and install <a href="https://www.ibm.com/support/knowledgecenter/SSMNED_5.0.0/mapfiles/getting_started.html">IBM API Connect</a></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgheadline35" class="outline-4">
+<h4 id="orgheadline35"><span class="section-number-4">1.7.2</span> Create API app with IBM API Connect</h4>
+<div class="outline-text-4" id="text-1-7-2">
+</div><ol class="org-ol"><li><a id="orgheadline22"></a>Create a bankapp<br  /><div class="outline-text-5" id="text-1-7-2-1">
+<p>
+In this step, we will create a loopback project
+more details: <a href="https://www.ibm.com/support/knowledgecenter/SSMNED_5.0.0/com.ibm.apic.toolkit.doc/tutorial_cli_project_create.html">Creating a LoopBack project</a>
+</p>
+<ol class="org-ol">
+<li>create a new folder <i>./app</i></li>
+<li>change folder to <i>./app</i></li>
+<li>type the command below</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #ff8A65;">cd</span> ./app
+apic loopback
+</pre>
+</div>
+</div></li>
+<li><a id="orgheadline23"></a>Install mongodb connector<br  /><div class="outline-text-5" id="text-1-7-2-2">
+<p>
+In this step, we will need to install the mongodb connector since we are connecting to docker mongodb instance
+more details: <a href="https://www.ibm.com/support/knowledgecenter/SSMNED_5.0.0/com.ibm.apic.toolkit.doc/tapim-connector-install.html">Installing LoopBack connectors</a>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #ff8A65;">cd</span> ./app/bankapp
+npm install --save loopback-connector-mongodb
+</pre>
+</div>
+
+<p>
+the <i>&#x2013;save</i> option will create a entry in the <b>package.json</b> file
+</p>
+
+<p>
+<a href="app/install-connector-trace.txt">trace for <i>npm install &#x2013;save loopback-connector-mongodb</i> command</a>
+</p>
+</div></li>
+<li><a id="orgheadline24"></a>Start mongodb instance<br  /><div class="outline-text-5" id="text-1-7-2-3">
+<p>
+see <a href="#orgheadline17">1.6.2</a>
+</p>
+</div></li>
+<li><a id="orgheadline25"></a>Create a datasource<br  /><div class="outline-text-5" id="text-1-7-2-4">
+<p>
+In this step, we will create the data source to mongodb
+More details: <a href="https://www.ibm.com/support/knowledgecenter/en/SSMNED_5.0.0/com.ibm.apic.toolkit.doc/tutorial_cli_model_create_command.html">Creating a model and a data source from the command line</a>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">apic create --type datasource
+</pre>
+</div>
+</div></li>
+<li><a id="orgheadline26"></a>Create Model<br  /><div class="outline-text-5" id="text-1-7-2-5">
+<p>
+In this step, we will create a model <i>profile</i> having one property <i>name:string</i>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #ff8A65;">cd</span> ./app/bankapp
+apic create --type model
+</pre>
+</div>
+</div></li>
+<li><a id="orgheadline34"></a>Test the loopback project<br  /><div class="outline-text-5" id="text-1-7-2-6">
+<p>
+In this step, you will test the loopback project, you can do this via command line or API designer
+more details: <a href="https://www.ibm.com/support/knowledgecenter/SSMNED_5.0.0/com.ibm.apic.toolkit.doc/tutorial_cli_project_test.html">Testing a LoopBack project</a>
+sign up for a Bluemix account, where you can deploy your API on the cloud.
+</p>
+
+<p>
+<b>Note:</b> Ensure the docker mongodb is running
+</p>
+
+<p>
+You will use edit API with the UI designer where you
+</p>
+<ul class="org-ul">
+<li>Start the designer</li>
+<li>Edit property in model, map the model to the datasource</li>
+<li>Test the datasource connection</li>
+<li>Run the project</li>
+<li>Test Post (insert profile record)</li>
+<li>Test Get (find all profile record)</li>
+</ul>
+</div>
+
+
+<ol class="org-ol"><li><a id="orgheadline27"></a>Start with the following command for UI designer<br  /><div class="outline-text-6" id="text-1-7-2-6-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">apic edit
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="./img/apic-edit-overview.png" alt="apic-edit-overview.png" />
+</p>
+<p><span class="figure-number">Figure 1:</span> Overview of APIC designer</p>
+</div>
+</div></li>
+
+<li><a id="orgheadline28"></a>Edit property in model<br  /><div class="outline-text-6" id="text-1-7-2-6-2">
+
+<div class="figure">
+<p><img src="img/apic-edit-model.png" alt="apic-edit-model.png" />
+</p>
+<p><span class="figure-number">Figure 2:</span> Access the model</p>
+</div>
+
+
+<div class="figure">
+<p><img src="img/apic-edit-model-detail.png" alt="apic-edit-model-detail.png" />
+</p>
+<p><span class="figure-number">Figure 3:</span> Edit model view</p>
+</div>
+</div></li>
+<li><a id="orgheadline29"></a>Test the datasource connection<br  /><div class="outline-text-6" id="text-1-7-2-6-3">
+
+<div class="figure">
+<p><img src="img/apic-edit-ds.png" alt="apic-edit-ds.png" />
+</p>
+<p><span class="figure-number">Figure 4:</span> Access datasource view</p>
+</div>
+
+
+<div class="figure">
+<p><img src="img/apic-edit-ds-detail.png" alt="apic-edit-ds-detail.png" />
+</p>
+<p><span class="figure-number">Figure 5:</span> Configure and test datasource</p>
+</div>
+
+
+<div class="figure">
+<p><img src="img/apic-edit-ds-detail-test.png" alt="apic-edit-ds-detail-test.png" />
+</p>
+<p><span class="figure-number">Figure 6:</span> Datasource test result</p>
+</div>
+</div></li>
+<li><a id="orgheadline30"></a>Run the project<br  /><div class="outline-text-6" id="text-1-7-2-6-4">
+
+<div class="figure">
+<p><img src="img/apic-edit-app-started.png" alt="apic-edit-app-started.png" />
+</p>
+<p><span class="figure-number">Figure 7:</span> Start app</p>
+</div>
+</div></li>
+<li><a id="orgheadline31"></a>Test Post (insert profile record)<br  /><div class="outline-text-6" id="text-1-7-2-6-5">
+
+<div class="figure">
+<p><img src="img/apic-edit-api-post.png" alt="apic-edit-api-post.png" />
+</p>
+<p><span class="figure-number">Figure 8:</span> Access POST API</p>
+</div>
+
+
+<div class="figure">
+<p><img src="img/apic-edit-api-post-call.png" alt="apic-edit-api-post-call.png" />
+</p>
+<p><span class="figure-number">Figure 9:</span> Call POST API</p>
+</div>
+
+<div class="figure">
+<p><img src="img/apic-edit-api-post-call-status.png" alt="apic-edit-api-post-call-status.png" />
+</p>
+<p><span class="figure-number">Figure 10:</span> Status of POST API</p>
+</div>
+</div></li>
+
+<li><a id="orgheadline32"></a>Test Get (find all profile record)<br  /><div class="outline-text-6" id="text-1-7-2-6-6">
+
+<div class="figure">
+<p><img src="img/apic-edit-api-get.png" alt="apic-edit-api-get.png" />
+</p>
+<p><span class="figure-number">Figure 11:</span> Access GET API</p>
+</div>
+
+
+<div class="figure">
+<p><img src="img/apic-edit-api-get-status.png" alt="apic-edit-api-get-status.png" />
+</p>
+<p><span class="figure-number">Figure 12:</span> Status of GET API call operation</p>
+</div>
+</div></li>
+
+<li><a id="orgheadline33"></a>A sample NodeJS app that test the bankapp above<br  /><div class="outline-text-6" id="text-1-7-2-6-7">
+<p>
+A simple clientapp to test call the newly created API profile
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #ff8A65;">cd</span> ./app/clientapp
+node .
+</pre>
+</div>
+
+<p>
+(browse-url "<a href="http://localhost:3000/api/profiles">http://localhost:3000/api/profiles</a>")
+</p>
+
+<p>
+Alternatively, you can test the project via command line, see link above.
+</p>
+</div></li></ol></li></ol>
+</div>
+</div>
+
+<div id="outline-container-orgheadline40" class="outline-3">
+<h3 id="orgheadline40"><span class="section-number-3">1.8</span> Demo 4 - Run a IBM WebSphere Liberty Server</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+In this demo you will pull a WebSphere Liberty image with sample app from Docker Hub and run it
+</p>
+</div>
+
+<div id="outline-container-orgheadline37" class="outline-4">
+<h4 id="orgheadline37"><span class="section-number-4">1.8.1</span> Pull WebSphere Liberty profile</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<p>
+In a terminal, run the following command, it will pull a new Liberty image with webProfile7
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">docker pull websphere-liberty:webProfile7
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline38" class="outline-4">
+<h4 id="orgheadline38"><span class="section-number-4">1.8.2</span> Run the image</h4>
+<div class="outline-text-4" id="text-1-8-2">
+<p>
+change the path in the command below accordingly to where the <i>libertyapp</i> folder is located on your machine.
+</p>
+
+<p>
+The command basically runs a docker image with options
+</p>
+<dl class="org-dl">
+<dt>d</dt><dd>daemon</dd>
+<dt>p</dt><dd>define a host port 80 map to docker container port 9080</dd>
+<dt>v</dt><dd>mount a host folder <i>../libertyapp/DefaultServletEngine/where an application is located to the container /config</i> folder</dd>
+<dt>websphere-liberty:webProfile7</dt><dd>the name of the image to run</dd>
+</dl>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run -d -p 80:9080 -v /Users/jaricsng/proj-dev/container/demo-docker/app/libertyapp/DefaultServletEngine:/config websphere-liberty:webProfile7
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline39" class="outline-4">
+<h4 id="orgheadline39"><span class="section-number-4">1.8.3</span> Test the app</h4>
+<div class="outline-text-4" id="text-1-8-3">
+<p>
+(browse-url "<a href="http://localhost/Sample1/SimpleServlet">http://localhost/Sample1/SimpleServlet</a>")
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline42" class="outline-3">
+<h3 id="orgheadline42"><span class="section-number-3">1.9</span> Resources</h3>
+<div class="outline-text-3" id="text-1-9">
+<ul class="org-ul">
+<li><a href="https://docs.docker.com/engine/installation/mac/">Docker installation on Mac</a></li>
+<li><a href="http://lzone.de/cheat-sheet/Docker">docker cheat sheet</a></li>
+<li><a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/">Docker best practice</a></li>
+</ul>
+</div>
+
+<div id="outline-container-orgheadline41" class="outline-4">
+<h4 id="orgheadline41"><span class="section-number-4">1.9.1</span> Docker Commands</h4>
+<div class="outline-text-4" id="text-1-9-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">command</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">docker ps</td>
+<td class="org-left"># List running instances</td>
+</tr>
+
+<tr>
+<td class="org-left">docker ps -a</td>
+<td class="org-left"># List all instances</td>
+</tr>
+
+<tr>
+<td class="org-left">docker inspect &lt;id&gt;</td>
+<td class="org-left"># Instance details</td>
+</tr>
+
+<tr>
+<td class="org-left">docker top     &lt;id&gt;</td>
+<td class="org-left"># Instance processes</td>
+</tr>
+
+<tr>
+<td class="org-left">docker logs    &lt;id&gt;</td>
+<td class="org-left"># Instance console log</td>
+</tr>
+
+<tr>
+<td class="org-left">docker run -i -t ubuntu /bin/bash</td>
+<td class="org-left"># New instance from image</td>
+</tr>
+
+<tr>
+<td class="org-left">docker start   &lt;id&gt;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">docker restart &lt;id&gt;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">docker stop    &lt;id&gt;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">docker attach  &lt;id&gt;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">docker rm      &lt;id&gt;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">docker cp '&lt;id&gt;':/data/file .</td>
+<td class="org-left"># Copy file out of container</td>
+</tr>
+
+<tr>
+<td class="org-left">docker images</td>
+<td class="org-left"># List locally stored images</td>
+</tr>
+
+<tr>
+<td class="org-left">docker logs &lt;id&gt;</td>
+<td class="org-left"># view the logs</td>
+</tr>
+
+<tr>
+<td class="org-left">docker kill &lt;id&gt;</td>
+<td class="org-left"># kill the instance</td>
+</tr>
+
+<tr>
+<td class="org-left">docker build -t &lt;name&gt; .</td>
+<td class="org-left"># build using the Dockerfile</td>
+</tr>
+
+<tr>
+<td class="org-left">docker run -p 5000:3000 -d -t &lt;id&gt;</td>
+<td class="org-left"># run in <i>daemon</i> with <i>host port</i> <b>5000</b> map to container port <b>3000</b></td>
+</tr>
+
+<tr>
+<td class="org-left">docker stop $(docker ps -a -q)</td>
+<td class="org-left"># stop all instances</td>
+</tr>
+
+<tr>
+<td class="org-left">docker rm $(docker ps -a -q)</td>
+<td class="org-left"># remove all instances (<b>caution!</b>)</td>
+</tr>
+
+<tr>
+<td class="org-left">docker rmi $(docker images -q)</td>
+<td class="org-left"># remover all images (<b>caution!</b>)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<ol class="org-ol">
+<li><a href="http://batsov.com/prelude/">Prelude prepackage by Bozhidar to make Emacs pleasant and powerful to use, would recommend starting with it</a></li>
+<li><a href="http://orgmode.org/guide/index.html#Top">The Emacs compact Org-mode Guide</a></li>
+<li><a href="http://emacsrocks.com/">Short video of why Emacs rocks!</a></li>
+<li><a href="https://www.youtube.com/watch?v=1-dUkyn_fZA">Emacs + org-mode + python in reproducible research; SciPy 2013 Presentation</a></li>
+<li><a href="https://www.youtube.com/watch?v=bzZ09dAbLEE">Taking Notes In Emacs Org-Mode</a></li>
+<li><a href="https://github.com/magnars/.emacs.d">Emacs configuration of Magnars who produces the Emacs Rocks! videos.</a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Jaric Sng</p>
+<p class="date">Created: 2016-09-03 Sat 13:04</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
